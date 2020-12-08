@@ -1,0 +1,29 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FMessageService WSDL service -->
+
+  <service name="FMessage" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://ws"/>
+      <parameter name="wsdlServiceElement" value="FMessageService"/>
+      <parameter name="schemaQualified" value="http://ws"/>
+      <parameter name="wsdlServicePort" value="FMessage"/>
+      <parameter name="className" value="ws.FMessageSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="FMessage"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="afficherMessage" qname="operNS:afficherMessage" xmlns:operNS="http://ws" returnQName="retNS:afficherMessageReturn" xmlns:retNS="http://ws" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:m" xmlns:pns="http://ws" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="afficherMessage"/>
+
+  </service>
+</deployment>

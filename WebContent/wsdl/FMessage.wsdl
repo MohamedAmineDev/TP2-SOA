@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ws" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ws" xmlns:intf="http://ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://ws" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="afficherMessage">
+    <complexType>
+     <sequence>
+      <element name="m" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="afficherMessageResponse">
+    <complexType>
+     <sequence>
+      <element name="afficherMessageReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="afficherMessageRequest">
+
+      <wsdl:part element="impl:afficherMessage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="afficherMessageResponse">
+
+      <wsdl:part element="impl:afficherMessageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="FMessage">
+
+      <wsdl:operation name="afficherMessage">
+
+         <wsdl:input message="impl:afficherMessageRequest" name="afficherMessageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:afficherMessageResponse" name="afficherMessageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="FMessageSoapBinding" type="impl:FMessage">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="afficherMessage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="afficherMessageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="afficherMessageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="FMessageService">
+
+      <wsdl:port binding="impl:FMessageSoapBinding" name="FMessage">
+
+         <wsdlsoap:address location="http://localhost:8081/Exp/services/FMessage"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
